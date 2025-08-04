@@ -17,7 +17,6 @@ class Event(models.Model):
     clients = models.ManyToManyField(
         'Client',
         blank=True,
-        null=True,
         related_name='events',
         verbose_name='Клієнти (якщо є)'
     )
