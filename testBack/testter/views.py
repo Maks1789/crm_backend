@@ -42,14 +42,21 @@ def logout_api_view(request):
     return JsonResponse({"detail": "Logged out"}, status=200)
 
 class EventAPIList(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwner]
+
+    def get_queryset(self):
+        return Event.objects.filter(owner=self.request.user).order_by('-id')
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 class EventAPIDestroy(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated, IsOwner]
+
+    def get_queryset(self):
+        return Event.objects.filter(owner=self.request.use
 
 
 
