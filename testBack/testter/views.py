@@ -14,6 +14,7 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
+from .permission import IsOwner
 @ensure_csrf_cookie
 def csrf_view(request):
     return JsonResponse({"detail": "CSRF cookie set"})
@@ -56,7 +57,7 @@ class EventAPIDestroy(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
     def get_queryset(self):
-        return Event.objects.filter(owner=self.request.use
+        return Event.objects.filter(owner=self.request.user)
 
 
 
