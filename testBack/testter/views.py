@@ -60,7 +60,6 @@ class EventAPIDestroy(generics.RetrieveUpdateDestroyAPIView):
         return Event.objects.filter(owner=self.request.user)
 
 
-
 class AboutUserView(APIView):
     # ✅ Це забезпечує, що View доступний лише автентифікованим користувачам.
     # Якщо користувач не автентифікований, DRF автоматично поверне 401 Unauthorized
