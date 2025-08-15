@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'testter',
     'rest_framework',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +79,12 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'testter.log_middleware.RequestHeadersLoggingMiddleware',
 ]
-
+OTP_TOTP_ISSUER = 'mini_crm_sistem'
 
 ROOT_URLCONF = 'testBack.urls'
 
@@ -142,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = os.environ.get('LANGUAGE_CODE', 'uk') # Мова з .env
-TIME_ZONE = os.environ.get('TIME_ZONE', 'Europe/Kiev') # Часова зона з .env
+TIME_ZONE = os.environ.get('TIME_ZONE', 'Europe/Kyiv') # Часова зона з .env
 
 USE_I18N = os.environ.get('USE_I18N', 'True').lower() == 'true'
 USE_TZ = os.environ.get('USE_TZ', 'True').lower() == 'true'

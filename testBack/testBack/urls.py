@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #session
     path('auth/', include('rest_framework.urls')),
-    path('', include('testter.urls', namespace='testter'))
+    path('', include('testter.urls', namespace='testter')),
+    path('api/', include('users.urls')),  # Підключаємо URL з users
 
     ]
